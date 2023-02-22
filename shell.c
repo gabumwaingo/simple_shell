@@ -39,7 +39,7 @@ int bind(char **arr)
 
 	for (i = 0; i < num_builtins(); i++)
 	{
-		if (strcmp(arr[0], builtin_list[i]) == 0)
+		if (_strcmp(arr[0], builtin_list[i]) == 0)
 			return (builtin_fun[i](arr));
 	}
 	return (execute(arr));

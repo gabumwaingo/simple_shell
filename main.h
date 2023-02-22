@@ -9,5 +9,6 @@ int _alias(char **arr);
 int ls_exit(char **arr);
 int _env(char **arr);
 int execute(char **arr);
+int _strcmp(char *s1, char *s2);
 
 #endif
