@@ -1,40 +1,38 @@
-#include "simpleshell.h"
+#include "general.h"
+#include "shell.h"
 
 /**
- * main - creates a prompt that reads input, sparses it, executes and waits
- * for another command unless told to exit
- * @ac: number of arguemnets
- * @av: array of arguements
- * @env: environment variable
- * Return: EXIT_SUCCESS
- */
-int main(int ac __attribute__((unused)), char **av, char **env)
+ * main - Entry point of the shell
+ *
+ * @argc: Number of arguments received
+ * @argv: Arguments received
+ *
+ * Return: 0 on success and 1 on error
+ **/
+int main(int argc, char **argv)
 {
-	char *line;
-	char **args, **path;
-	int count = 0, status = 0;
-	(void) av;
-	signal(SIGINT, handle_signal);
-	while (1)
-	{
-		prompt();
-		/*read input and return string*/
-		line = read_input();
-		/*separates string to get command and atgs*/
-		args = sparse_str(line, env);
+	general_t *info;
+	int status_code;
 
-		if ((_strcmp(args[0], "\n") != 0) && (_strcmp(args[0], "env") != 0))
-		{
-			count += 1;
-			path = search_path(env); /*busca PATH en la variable environ*/
-			status = _stat(args, path);
-			child_process(av, args, env, status, count);
-		}
-		else
-		{
-			free(args);
-		}
-		free(line);
+	info = malloc(sizeof(general_t));
+	if (info == NULL)
+	{
+		perror(argv[0]);
+		exit(1);
 	}
-	return (EXIT_SUCCESS);
+
+	info->pid = getpid();
+	info->status_code = 0;
+	info->n_commands = 0;
+	info->argc = argc;
+	info->argv = argv;
+	info->mode = isatty(STDIN) == INTERACTIVE;
+	start(info);
+
+	status_code = info->status_code;
+
+	free(info);
+
+	return (status_code);
 }
+

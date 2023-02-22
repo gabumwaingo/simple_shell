@@ -1,26 +1,47 @@
-#include "simpleshell.h"
+#include "memory.h"
 
 /**
- *_calloc -allocated memoria for nmeb elemn de zise bytes
- *@nmemb: number of element in the array
- *@size: bytes for each position in the array
- *Return: pointer void
- */
-void *_calloc(unsigned int nmemb, unsigned int size)
+ * _realloc - Reallocates a memory block using malloc and free
+ *
+ * @ptr: Pointer to the memory previously allocated
+ * @old_size: Size, in bytes, of the allocated space for ptr
+ * @new_size: New size, in bytes of the new memory block
+ *
+ * Return: Memory reallocated
+ **/
+void *_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-	char *p;
-	unsigned int i;
+	char *s, *aux;
+	unsigned int a;
 
-	if (nmemb == 0 || size == 0)
+	if (new_size == old_size)
+		return (ptr);
+
+	if (ptr == NULL)
+	{
+		s = malloc(new_size);
+		if (s == NULL)
+			return (NULL);
+
+		return (s);
+	}
+
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
+		return (NULL);
+	}
+
+	s = malloc(new_size);
+	if (s == NULL)
 		return (NULL);
 
-	p = malloc(nmemb * size);
-	if (p == NULL)
-		return (NULL);
+	aux = ptr;
+	for (a = 0; a < old_size; a++)
+		s[a] = aux[a];
 
-	for (i = 0; i < nmemb * size; i++)
-		p[i] = 0;
+	free(ptr);
 
-	return (p);
-
+	return (s);
 }
+
