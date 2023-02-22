@@ -3,6 +3,12 @@
 #include "memory.h"
 #include "text.h"
 
+/**
+ * analyze_patterns - analyses patterns
+ * @info: information
+ * @arguments: commandline arguments
+ * Return: nothing
+ */
 void analyze_patterns(general_t *info, char **arguments)
 {
 	int i;
@@ -10,7 +16,12 @@ void analyze_patterns(general_t *info, char **arguments)
 	for (i = 0; arguments[i] != NULL; i++)
 		arguments[i] = pattern_handler(info, arguments[i]);
 }
-
+/**
+ * pattern_handler - handles patterns
+ * @info: information
+ * @string: input string
+ * Return: string
+ */
 char *pattern_handler(general_t *info, char *string)
 {
 	int i;
@@ -23,7 +34,13 @@ char *pattern_handler(general_t *info, char *string)
 
 	return (string);
 }
-
+/**
+ * replace_value - replaces value
+ * @info: information
+ * @index: position where info is to be replaced
+ * @string: input string
+ * Return: replaced value
+ */
 char *replace_value(general_t *info, int *index, char *string)
 {
 	int i, new_s, old_s;
@@ -36,7 +53,7 @@ char *replace_value(general_t *info, int *index, char *string)
 	if (value == NULL)
 	{
 		string = _strcpy(string, "");
-		return (string);;
+		return (string);
 	}
 
 	old_s = _strlen(string);
