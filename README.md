@@ -1,1 +1,1 @@
-This is our shell project
+SIMPLE SHELL GROUP PROJECT BY IAN AND GABRIEL
