@@ -11,7 +11,7 @@
  * @arr: source of the commands and arguments
  * Return: 1 on success
  */
-int execute(char **arr, environ)
+int execute(char **arr)
 {
 	pid_t my_pid;
 	int status;
@@ -20,7 +20,7 @@ int execute(char **arr, environ)
 
 	if (my_pid == 0)
 	{
-		if (execve(arr[0], arr, NULL) == -1)
+		if (execve(arr[0], arr, environ) == -1)
 		{
 			perror("Error");
 		}
