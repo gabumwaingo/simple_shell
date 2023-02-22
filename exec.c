@@ -11,7 +11,7 @@
  * @arr: source of the commands and arguments
  * Return: 1 on success
  */
-int execute(char **arr)
+int execute(char **arr, environ)
 {
 	pid_t my_pid;
 	int status;
