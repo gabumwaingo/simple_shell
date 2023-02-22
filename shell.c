@@ -6,19 +6,15 @@
 #include <sys/types.h>
 #include "main.h"
 
-char *builtin_list[] = {
-	"exit"
-};
-int (*builtin_fun[])(char **) = {
-	&ls_exit
-};
-
 /**
  * num_builtins - counts the number of builtins
  * Return: number of builtins
  */
 int num_builtins(void)
 {
+	char *builtin_list[] = {
+		"exit"
+	};
 	return (sizeof(builtin_list) / sizeof(char *));
 }
 /**
@@ -28,6 +24,12 @@ int num_builtins(void)
  */
 int bind(char **arr)
 {
+	char *builtin_list[] = {
+		"exit"
+	};
+	int (*builtin_fun[])(char **) = {
+		&ls_exit
+	};
 	int i;
 
 	if (arr[0] == NULL)
