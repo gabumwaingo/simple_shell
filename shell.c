@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 #include "shell.h"
+=======
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include "main.h"
+>>>>>>> 88648e7866966fbacd4e2bbe8a3916352031de30
 
 /**
  * main - Simple Shell (Hsh)
@@ -9,6 +19,7 @@
 
 int main(__attribute__((unused)) int argc, char **argv)
 {
+<<<<<<< HEAD
 	char *input, **cmd;
 	int counter = 0, statue = 1, st = 0;
 
@@ -45,6 +56,12 @@ int main(__attribute__((unused)) int argc, char **argv)
 		free_all(cmd, input);
 	}
 	return (statue);
+=======
+	char *builtin_list[] = {
+		"exit"
+	};
+	return (sizeof(builtin_list) / sizeof(char *));
+>>>>>>> 88648e7866966fbacd4e2bbe8a3916352031de30
 }
 /**
  * check_builtin - check builtin
@@ -54,6 +71,7 @@ int main(__attribute__((unused)) int argc, char **argv)
  */
 int check_builtin(char **cmd)
 {
+<<<<<<< HEAD
 	bul_t fun[] = {
 		{"cd", NULL},
 		{"help", NULL},
@@ -63,6 +81,17 @@ int check_builtin(char **cmd)
 	};
 	int i = 0;
 		if (*cmd == NULL)
+=======
+	char *builtin_list[] = {
+		"exit"
+	};
+	int (*builtin_fun[])(char **) = {
+		&ls_exit
+	};
+	int i;
+
+	if (arr[0] == NULL)
+>>>>>>> 88648e7866966fbacd4e2bbe8a3916352031de30
 	{
 		return (-1);
 	}
