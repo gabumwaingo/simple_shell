@@ -16,6 +16,8 @@ int execute(char **arr)
 	pid_t my_pid;
 	int status;
 
+	my_pid = fork();
+
 	if (my_pid == 0)
 	{
 		if (execve(arr[0], arr, NULL) == -1)
