@@ -15,6 +15,7 @@ int execute(char **arr)
 {
 	pid_t my_pid;
 	int status;
+	extern char **environ;
 
 	my_pid = fork();
 

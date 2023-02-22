@@ -10,6 +10,4 @@ int ls_exit(char **arr);
 int _env(char **arr);
 int execute(char **arr);
 
-extern char **environ;
-
 #endif
